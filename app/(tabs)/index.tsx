@@ -1,6 +1,6 @@
 // app/(tabs)/index.tsx
 // wallet screen - home tab at "/" route
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -153,6 +153,12 @@ export default function WalletScreen() {
     setTokens([]);
     setTxns([]);
   };
+
+  useEffect(() => {
+    if (wallet.connected) {
+      setAddress(wallet.publicKey?.toBase58() ?? "");
+    }
+  }, []);
 
   return (
     <SafeAreaView style={s.safe} edges={["top"]}>

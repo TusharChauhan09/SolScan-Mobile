@@ -2,8 +2,11 @@
 // tab layout - defines bottom tab navigation
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
+  const { bottom } = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
@@ -14,9 +17,9 @@ export default function TabLayout() {
           backgroundColor: "#16161D",
           borderTopColor: "#2A2A35",
           borderTopWidth: 1,
-          paddingBottom: 8,
+          paddingBottom: bottom + 8,
           paddingTop: 12,
-          height: 70,
+          height: 70 + bottom,
         },
         // active/inactive colors
         tabBarActiveTintColor: "#14F195",
@@ -39,6 +42,15 @@ export default function TabLayout() {
           title: "Swap",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="swap-horizontal" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="send"
+        options={{
+          title: "send",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="send" size={size} color={color} />
           ),
         }}
       />
