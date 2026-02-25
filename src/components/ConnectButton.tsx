@@ -15,7 +15,7 @@ interface Props {
   onDisconnect: () => void;
 }
 
-const ConnectButton = ({
+export const ConnectButton = ({
   connected,
   connecting,
   publicKey,
@@ -58,7 +58,6 @@ const ConnectButton = ({
   );
 };
 
-export default ConnectButton;
 
 const styles = StyleSheet.create({
   button: {

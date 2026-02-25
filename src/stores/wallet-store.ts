@@ -17,7 +17,7 @@ interface WalletState {
   addToHistory: (address: string) => void;
   clearHistory: () => void;
   toggleNetwork: () => void;
-  setConnectedPublicKey: (key: string | null) => void;
+  setConnectedPublicKey: (publicKey: string | null) => void;
 }
 
 export const useWalletStore = create<WalletState>()(
@@ -56,11 +56,11 @@ export const useWalletStore = create<WalletState>()(
 
       toggleNetwork: () => set((state) => ({ isDevnet: !state.isDevnet })),
 
-      setConnectedPublicKey: (key) => set({ connectedPublicKey: key }),
+      setConnectedPublicKey: (publicKey) => set({ connectedPublicKey: publicKey }),
     }),
     {
       name: "wallet-storage",
       storage: createJSONStorage(() => AsyncStorage),
-    },
-  ),
+    }
+  )
 );

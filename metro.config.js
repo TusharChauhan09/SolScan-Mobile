@@ -11,7 +11,10 @@ const {
 // Add .mjs for Solana libraries that rely on ESM modules
 config.resolver.sourceExts = [...sourceExts, "mjs"];
 
-// Keep exports support enabled (default in recent Expo)
-config.resolver.unstable_enablePackageExports = true;
+// Disable package-exports resolution — several Solana dependencies
+// (rpc-websockets, @noble/hashes) don't declare Android-compatible
+// "exports" conditions and emit noisy WARNs. The .mjs extension above
+// already handles ESM files correctly without this flag.
+config.resolver.unstable_enablePackageExports = false;
 
 module.exports = config;
